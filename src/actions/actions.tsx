@@ -18,9 +18,16 @@ export async function createPost(formData: FormData) {
     // Get the session to access user info
     const userData = await getUser();
 
-    const given_name = userData.given_name;
-    const family_name = userData.family_name;
-    const author = given_name + " " + family_name;
+    if (userData) {
+        const given_name = userData.given_name;
+        const family_name = userData.family_name;
+        const author = given_name + " " + family_name;
+    } else {
+        // If the user is not logged in, save the post as an anonymous user
+        const author = "Anonymous";
+    }
+
+
 
 
 
